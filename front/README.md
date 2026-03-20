@@ -70,3 +70,7 @@ Launching test:
 for following change:
 
 > npm run test:watch
+
+Launch tests with coverage report:
+
+> npm run test:coverage
