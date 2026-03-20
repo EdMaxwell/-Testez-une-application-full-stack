@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "email": "user@studio.com",
+  "lastName": "User",
+  "firstName": "Regular",
+  "admin": false,
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-02T00:00:00.000Z"
+}
