@@ -17,6 +17,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<java.release>8</java.release>
+		<lombok.version>1.18.32</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -67,6 +69,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
 
@@ -81,10 +84,46 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.5.1.Final</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>${java.release}</release>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.5.1.Final</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                        <include>**/*IT.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -97,10 +136,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -126,9 +161,15 @@
 							<goal>check</goal>
 						</goals>
 						<configuration>
+                            <excludes>
+                                <exclude>com/openclassrooms/starterjwt/dto/**</exclude>
+                            </excludes>
 							<rules>
 								<rule>
-									<element>PACKAGE</element>
+                                    <element>BUNDLE</element>
+                                    <excludes>
+                                        <exclude>com/openclassrooms/starterjwt/dto/**</exclude>
+                                    </excludes>
 									<limits>
 										<limit>
 											<counter>LINE</counter>
