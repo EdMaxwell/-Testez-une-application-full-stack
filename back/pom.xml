@@ -162,13 +162,17 @@
 						</goals>
 						<configuration>
                             <excludes>
-                                <exclude>com/openclassrooms/starterjwt/dto/**</exclude>
+                                <exclude>com/openclassrooms/starterjwt/dto/*.class</exclude>
+                                <exclude>com/openclassrooms/starterjwt/mapper/**</exclude>
+                                <exclude>com/openclassrooms/starterjwt/models/**</exclude>
                             </excludes>
 							<rules>
 								<rule>
                                     <element>BUNDLE</element>
                                     <excludes>
                                         <exclude>com/openclassrooms/starterjwt/dto/**</exclude>
+                                        <exclude>com/openclassrooms/starterjwt/mapper/**</exclude>
+                                        <exclude>com/openclassrooms/starterjwt/models/**</exclude>
                                     </excludes>
 									<limits>
 										<limit>
