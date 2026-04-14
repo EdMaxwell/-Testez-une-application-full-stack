@@ -3,7 +3,7 @@
 Application full-stack de gestion de sessions de yoga.
 
 - **Front-end** : Angular 14
-- **Back-end** : Spring Boot 2.6 (Java 8)
+- **Back-end** : Spring Boot 2.6 (source compatible Java 8, exécution recommandée avec Java 11)
 - **Tests unitaires front** : Jest
 - **Tests unitaires/intégration back** : JUnit 5 / Mockito + tests d'intégration
 - **Tests end-to-end** : Cypress 10
@@ -16,8 +16,8 @@ Application full-stack de gestion de sessions de yoga.
 
 ```bash
 # 1) Récupérer le projet
-git clone https://github.com/EdMaxwell/openclassroom-test-v1.git
-cd openclassroom-test-v1
+git clone https://github.com/EdMaxwell/-Testez-une-application-full-stack.git
+cd -Testez-une-application-full-stack
 
 # 2) Initialiser la DB (à exécuter depuis la racine)
 mysql -u user -p123456 test < ressources/sql/script.sql
@@ -57,7 +57,7 @@ Compte admin :
 
 | Outil       | Version recommandée |
 | ----------- | ------------------- |
-| Java (JDK)  | 1.8 (Java 8)        |
+| Java (JDK)  | 11 recommandé       |
 | Maven       | 3.6+                |
 | Node.js     | 16.x LTS            |
 | npm         | 8.x+                |
@@ -80,8 +80,8 @@ Compte admin :
 ## 2. Récupérer le projet
 
 ```bash
-git clone https://github.com/EdMaxwell/openclassroom-test-v1.git
-cd openclassroom-test-v1
+git clone https://github.com/EdMaxwell/-Testez-une-application-full-stack.git
+cd -Testez-une-application-full-stack
 ```
 
 ---
@@ -276,16 +276,16 @@ front/coverage/jest/lcov-report/index.html
 
 ```bash
 cd back
-mvn clean test
+mvn clean verify
 ```
 
-JaCoCo génère automatiquement le rapport pendant la phase de test. Le rapport HTML est disponible dans :
+JaCoCo génère automatiquement le rapport pendant le build. Le rapport HTML est disponible dans :
 
 ```text
 back/target/site/jacoco/index.html
 ```
 
-> ⚠️ **Seuil JaCoCo** : vérifiez la valeur configurée dans le `pom.xml` (jacoco-maven-plugin / `minimum`). Le build peut échouer si le seuil n'est pas atteint.
+> ⚠️ **Seuil JaCoCo** : la vérification du seuil est exécutée pendant la phase `verify`. Utilisez donc `mvn clean verify` pour contrôler que la couverture minimale est bien respectée.
 
 ### 7.3 Couverture e2e (Cypress + NYC/Istanbul)
 
